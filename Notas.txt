@@ -1,0 +1,9 @@
+Token de Acceso GITHUB - JENKINS
+
+COMANDOS
+ngrok http http://localhost:8080
+
+
+WEBHOOK
+https://16c8-189-28-91-176.ngrok-free.app/
+github-webhook/

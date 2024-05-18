@@ -1,9 +1,35 @@
 Token de Acceso GITHUB - JENKINS
 
-COMANDOS
+
+Token de Acceso DOCKERHUB - JENKINS
+
+
+NGROK
 ngrok http http://localhost:8080
 
 
-WEBHOOK
-https://16c8-189-28-91-176.ngrok-free.app/
-github-webhook/
+WEBHOOK (NGROK-GIHUB)
+https://16c8-189-28-91-176.ngrok-free.app/github-webhook/
+
+PERMISOS PARA DOCKER
+sudo chmod 666 /var/run/docker.sock
+
+JENKINS
+service jenkins start
+service nginx stop
+
+
+DOCKER
+service docer start
+service docker stop
+docker --version
+
+
+
+KUBERNETES
+minikube start --driver=docker
+minikube stop
+minikube version
+
+
+

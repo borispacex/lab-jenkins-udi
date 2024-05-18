@@ -1,20 +1,49 @@
-pipeline{
-    agent any
-    stages{
-        stage ('Build'){
-            steps{
-                echo "Etapa BUILD no disponible"
-            }
-        }
-        stage ('Tests'){
-            steps{
-                echo "Etapa TEST no disponible"
-            }
-        }
-        stage ('Deploy'){
-            steps{
-                sh "docker ps"
-            }
-        }
+pipeline {
+
+  environment {
+    dockerimagename = "borispacex/nodeapp"
+    dockerImage = ""
+  }
+
+  agent any
+
+  stages {
+
+    stage('Checkout Source') {
+      steps {
+        git 'https://github.com/borispacex/lab-jenkins-udi.git'
+      }
     }
+
+    stage('Build image') {
+      steps{
+        script {
+          dockerImage = docker.build dockerimagename
+        }
+      }
+    }
+
+    stage('Pushing Image') {
+      environment {
+               registryCredential = 'dockerhublogin'
+           }
+      steps{
+        script {
+          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+            dockerImage.push("latest")
+          }
+        }
+      }
+    }
+
+    stage('Deploying App to Kubernetes') {
+      steps {
+        script {
+          kubernetesDeploy(configs: "deploymentservice.yml", kubeconfigId: "kubernetes")
+        }
+      }
+    }
+
+  }
+
 }

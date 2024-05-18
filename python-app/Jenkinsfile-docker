@@ -34,11 +34,11 @@ pipeline{
         always {
             sh 'docker logout'
         }
-        success{
+        /*success{
             sh " Todo bien."
         }
         failure{
             echo " Ejecucion con errores"
-        }
+        } */
     } 
 }

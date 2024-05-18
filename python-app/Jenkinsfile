@@ -13,7 +13,7 @@ pipeline{
                 sh 'docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} ./python-app'
             }
         }
-        /*
+        
         stage('Run Unit Test') {
             steps {
                 sh 'cd python-app && pip install -r requirements.txt && python3 -m unittest test_app.py'
@@ -28,7 +28,6 @@ pipeline{
             }
         }
 
-        /*
         stage("Docker run"){
             steps{
                 input message: 'Continue?'
@@ -41,7 +40,7 @@ pipeline{
             }
         }
         
-        
+        /*
         stage("Update Deployment Manifest") {
             steps {
                 script {

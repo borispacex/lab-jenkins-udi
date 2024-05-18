@@ -9,13 +9,13 @@ pipeline {
 
   stages {
 
-    stage('Checkout Source') {
+    stage('Verificar GITHUB') {
       steps {
         git 'https://github.com/borispacex/lab-jenkins-udi.git'
       }
     }
 
-    stage('Build image') {
+    stage('Construir IMAGEN') {
       steps{
         script {
           dockerImage = docker.build dockerimagename
@@ -23,7 +23,7 @@ pipeline {
       }
     }
 
-    stage('Pushing Image') {
+    stage('Subir IMAGEN') {
       environment {
                registryCredential = 'dockerhublogin'
            }
@@ -36,7 +36,7 @@ pipeline {
       }
     }
 
-    stage('Deploying App to Kubernetes') {
+    stage('Implementacion de APP KUBERNETES') {
       steps {
         script {
           kubernetesDeploy(configs: "deploymentservice.yml", kubeconfigId: "kubernetes")

@@ -3,7 +3,7 @@ pipeline{
 
     environment {
         IMAGE_NAME = "borispacex/python-app"
-//        DOCKERHUB_CREDS = credentials("jenkins-udi")
+        DOCKERHUB_CREDS = credentials("dockerhub-credential")
         NameContainer = "python-app"
     }
 
